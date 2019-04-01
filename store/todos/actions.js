@@ -3,15 +3,22 @@ export default {
     console.log("add todo action called" + text);
     commit("ADD_TODO", text);
   },
+  removeTodo({ commit }, index) {
+    console.log("removeTodo " + index);
+    commit("removeTodo", index);
+  },
 
   toggle({ commit }, todo) {
     //todo.done = !todo.done;
   },
   async completeTask({ commit }, todo) {
-    const response = await this.$axios.$put(
-      "https://jsonplaceholder.typicode.com/todos/" + todo.id
+    const response = await this.$axios.$patch(
+      "https://jsonplaceholder.typicode.com/todos/" + todo.id,
+      {
+        completed: !todo.completed
+      }
     );
-    console.log(response);
+    commit("completeTask", todo);
   },
   async fetchTodos({ commit }) {
     const data = await this.$axios.$get(
@@ -19,5 +26,8 @@ export default {
     );
     //console.log("fetch todo action");
     commit("set_todos", data);
+  },
+  modify({ commit }) {
+    commit("modify");
   }
 };

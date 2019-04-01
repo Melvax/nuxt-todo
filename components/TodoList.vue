@@ -22,11 +22,11 @@
             <v-list-tile-content>
               <v-list-tile-title
                 :class="{
-          done: todo.completed
-          }"
+                    done: todo.completed
+                    }"
                 class="title"
               >{{todo.title | capitalize}}</v-list-tile-title>
-              <v-list-tile-sub-title>user</v-list-tile-sub-title>
+              <v-list-tile-sub-title>user: {{todo.userId}}</v-list-tile-sub-title>
             </v-list-tile-content>
             <v-btn icon ripple color="red" @click="removeTodo(i)">
               <v-icon class="white--text">close</v-icon>
@@ -52,6 +52,11 @@ export default {
     completed: "todos/completed",
     todos: "todos/todos"
   }),
+  mounted() {
+    console.log("child mounted");
+    this.$store.dispatch("todos/modify");
+    console.log("modifying");
+  },
   methods: {
     async completeTodo(todo) {
       await this.$store.dispatch("todos/completeTask", todo);
@@ -68,7 +73,9 @@ export default {
       this.newTodo = "";
     },
     removeTodo(index) {
-      todos.splice(index, 1);
+      console.log("remove todo Todolist : " + index);
+      //this.todos.splice(index, 1);
+      this.$store.dispatch("todos/removeTodo", index);
     }
   },
   filters: {

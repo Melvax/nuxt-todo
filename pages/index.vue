@@ -17,8 +17,6 @@ export default {
   components: { TodoList },
   data() {
     return {
-      input: "",
-      isDark: true,
       show: true,
       newTodo: ""
     };
@@ -29,29 +27,11 @@ export default {
   mounted() {
     console.log("mounted");
 
-    /*
-    console.log("mounted");
 
-    fetch("https://jsonplaceholder.typicode.com/todos")
-      .then(response => response.json())
-      .then(json =>
-        //console.log("there is currently " + json.length + " todos")
-        console.log(json)
-      );
-      */
-
-    /*const { data } = this.$axios.$get(
-      "https://jsonplaceholder.typicode.com/todos"
-    );*/
-    //console.log(data);
-    //test action with params
-    //this.$store.dispatch("todos/addTodo", "oui");
   },
-  computed: {
-    ...mapState(["todos/todos"]),
-
-    ...mapGetters(["todos/todos"]) // mapstate  to do
-  },
+  computed: mapGetters({
+    todos: "todos/todos"
+  }),
   methods: {
     addTodo(e) {
       const text = e.target.value;
