@@ -16,8 +16,8 @@
         <v-subheader class="subheading" v-else="myuser.length >= 1">Your Tasks</v-subheader>
         <div v-for="(todo, i) in myuser">
           <v-list-tile avatar>
-            <v-list-tile-action>
-              <v-checkbox v-model="todo.completed" @click="completeTodo(todo)"></v-checkbox>
+            <v-list-tile-action @click="completeTodo(todo)">
+              <v-checkbox v-model="todo.completed" @click.prevent></v-checkbox>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title
@@ -28,7 +28,7 @@
               >{{todo.title | capitalize}}</v-list-tile-title>
               <v-list-tile-sub-title>user: {{todo.userId}}</v-list-tile-sub-title>
             </v-list-tile-content>
-            <v-btn icon ripple color="red" @click="removeTodo(i)">
+            <v-btn icon ripple color="red" @click.self="removeTodo(i)">
               <v-icon class="white--text">close</v-icon>
             </v-btn>
           </v-list-tile>
