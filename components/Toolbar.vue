@@ -1,8 +1,6 @@
 <template>
   <div>
     <v-toolbar color="purple" dark>
-      <v-toolbar-side-icon></v-toolbar-side-icon>
-
       <v-toolbar-title class="headline">Nuxt vuex todo App</v-toolbar-title>
     </v-toolbar>
     <v-layout row justify-center class="ma-10">

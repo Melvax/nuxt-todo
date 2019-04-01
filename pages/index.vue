@@ -24,28 +24,10 @@ export default {
   async fetch({ store }) {
     await store.dispatch("todos/fetchTodos");
   },
-  mounted() {
-    console.log("mounted");
-
-
-  },
+  mounted() {},
   computed: mapGetters({
     todos: "todos/todos"
-  }),
-  methods: {
-    addTodo(e) {
-      const text = e.target.value;
-      if (text.trim()) {
-        this.$store.commit("todos/add", { text });
-      }
-      e.target.value = "";
-    }
-    /*
-    ...mapMutations({
-      toggle: "todos/toggle"
-    })
-    */
-  }
+  })
 };
 </script>
 

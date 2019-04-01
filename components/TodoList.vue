@@ -12,9 +12,9 @@
           @keyup.enter="addTodo"
         ></v-text-field>
 
-        <v-subheader class="subheading" v-if="myuser.length == 0">You have 0 Tasks, add some</v-subheader>
-        <v-subheader class="subheading" v-else="myuser.length >= 1">Your Tasks</v-subheader>
-        <div v-for="(todo, i) in myuser">
+        <v-subheader class="subheading" v-if="todos.length == 0">You have 0 Tasks, add some</v-subheader>
+        <v-subheader class="subheading" v-else="todos.length >= 1">Your Tasks</v-subheader>
+        <div v-for="(todo, i) in todos">
           <v-list-tile avatar>
             <v-list-tile-action @click="completeTodo(todo)">
               <v-checkbox v-model="todo.completed" @click.prevent></v-checkbox>
@@ -28,7 +28,7 @@
               >{{todo.title | capitalize}}</v-list-tile-title>
               <v-list-tile-sub-title>user: {{todo.userId}}</v-list-tile-sub-title>
             </v-list-tile-content>
-            <v-btn icon ripple color="red" @click.self="removeTodo(i)">
+            <v-btn icon ripple color="red" @click="removeTodo(i)">
               <v-icon class="white--text">close</v-icon>
             </v-btn>
           </v-list-tile>
