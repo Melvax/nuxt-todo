@@ -52,11 +52,7 @@ export default {
     completed: "todos/completed",
     todos: "todos/todos"
   }),
-  mounted() {
-    console.log("child mounted");
-    this.$store.dispatch("todos/modify");
-    console.log("modifying");
-  },
+  mounted() {},
   methods: {
     async completeTodo(todo) {
       await this.$store.dispatch("todos/completeTask", todo);
@@ -68,13 +64,11 @@ export default {
         return;
       }
 
-      this.$store.dispatch("todos/addTodo", this.newTodo);
+      this.$store.dispatch("todos/addTodo", value);
 
       this.newTodo = "";
     },
     removeTodo(index) {
-      console.log("remove todo Todolist : " + index);
-      //this.todos.splice(index, 1);
       this.$store.dispatch("todos/removeTodo", index);
     }
   },

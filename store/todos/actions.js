@@ -5,21 +5,18 @@ export default {
   },
   removeTodo({ commit }, index) {
     console.log("removeTodo " + index);
-    commit("removeTodo", index);
+    commit("REMOVE_TODO", index);
   },
 
-  toggle({ commit }, todo) {
-    //todo.done = !todo.done;
-  },
   async completeTask({ commit }, todo) {
-    commit("completeTask", todo);
+    commit("COMPLETE_TASK", todo);
     const response = await this.$axios
       .$patch("https://jsonplaceholder.typicode.com/todos/" + todo.id, {
         completed: !todo.completed
       })
       .catch(error => {
         //s'il y a une erreure sur le serveur => rétablir la checkbox
-        commit("completeTask", todo);
+        commit("COMPLETE_TASK", todo);
       });
   },
   async fetchTodos({ commit }) {
@@ -27,9 +24,6 @@ export default {
       "https://jsonplaceholder.typicode.com/todos"
     );
     //console.log("fetch todo action");
-    commit("set_todos", data);
-  },
-  modify({ commit }) {
-    commit("modify");
+    commit("SET_TODOS", data);
   }
 };
